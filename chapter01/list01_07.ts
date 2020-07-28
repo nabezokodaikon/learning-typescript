@@ -3,7 +3,7 @@ interface Monument {
   heightInMeters: number;
 }
 
-const monuments: Monument[] = [];
+const monuments: Array<Monument> = [];
 
 monuments.push({
   name: 'Status of Liberty',
