@@ -27,3 +27,18 @@ module Shipping {
 
 const ferry = new Shipping.Ferry('Assurance', 'London', 3220);
 console.log(ferry.name)
+
+module Docking {
+  import Ship = Shipping.Ship;
+
+  export class Dock {
+    private dockedShips: Ship[] = [];
+
+    arrival(ship: Ship) {
+      this.dockedShips.push(ship);
+    }
+  }
+}
+
+const dock = new Docking.Dock();
+dock.arrival(new Shipping.Ferry('','',1));
