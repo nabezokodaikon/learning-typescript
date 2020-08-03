@@ -1,5 +1,3 @@
-import * as fs from 'https://deno.land/std/node/fs.ts';
-
 module list03_01 {
 
   interface FileItem {
