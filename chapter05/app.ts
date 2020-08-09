@@ -93,6 +93,12 @@ class Ajax {
 
 class StorageTest {
 
+  constructor() {
+    window.addEventListener('storage', ev => {
+      console.log(`${ev.key} "${ev.oldValue}" change to "${ev.newValue}"`);
+    });
+  }
+
   sessionStorage() {
     const storageKey = 'Example';
     console.log(sessionStorage.getItem(storageKey));
@@ -102,6 +108,10 @@ class StorageTest {
     // sessionStorage.clear();
   }
 
+  localStorage() {
+    const storageKey = 'Example';
+    localStorage.setItem(storageKey, `Stored value ${Date.now()}`);
+  }
 }
 
 {
@@ -123,5 +133,10 @@ class StorageTest {
   document.getElementById('sessionStorageButton')!.addEventListener('click', _ev => {
     const storage = new StorageTest();
     storage.sessionStorage();
+  });
+
+  document.getElementById('localStorageButton')!.addEventListener('click', _ev => {
+    const storage = new StorageTest();
+    storage.localStorage();
   });
 }
