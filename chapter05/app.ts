@@ -73,7 +73,7 @@ class Ajax {
     request.send();
   }
 
-  httpPost(url: string, data: string,
+  httpPost(url: string, _data: string,
            callback: (status: number, response: string) => any) {
     const request = new XMLHttpRequest();
 
@@ -88,6 +88,20 @@ class Ajax {
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send();
   }
+
+}
+
+class StorageTest {
+
+  sessionStorage() {
+    const storageKey = 'Example';
+    console.log(sessionStorage.getItem(storageKey));
+    sessionStorage.setItem(storageKey, 'Srored value');
+    console.log(sessionStorage.getItem(storageKey));
+    // sessionStorage.removeItem(storageKey);
+    // sessionStorage.clear();
+  }
+
 }
 
 {
@@ -104,5 +118,10 @@ class Ajax {
     ajax.httpPost('http://localhost:4507/', 'postdata', (status, _response) => {
       console.log(`status: ${status}`);
     });
+  });
+
+  document.getElementById('sessionStorageButton')!.addEventListener('click', _ev => {
+    const storage = new StorageTest();
+    storage.sessionStorage();
   });
 }
