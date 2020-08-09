@@ -74,13 +74,11 @@ class Ajax {
   }
 }
 
-// export { Ajax };
-
 {
-  document.cookie = 'cross-site-cookie=bar; SameSite=None; Secure';
-  const ajax = new Ajax();
-  ajax.httpGet('http://localhost:8000/', (status, response) => {
-    console.log(`status: ${status}`);
-    console.log(response);
+  document.getElementById('ajaxButton')!.addEventListener('click', _ev => {
+    const ajax = new Ajax();
+    ajax.httpGet('http://localhost:4507/', (status, _response) => {
+      console.log(`status: ${status}`);
+    });
   });
 }
