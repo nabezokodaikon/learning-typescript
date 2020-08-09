@@ -72,12 +72,36 @@ class Ajax {
     request.open('GET', url, true);
     request.send();
   }
+
+  httpPost(url: string, data: string,
+           callback: (status: number, response: string) => any) {
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = () => {
+      const completed = this.isCompleted(request);
+      if (completed) {
+        callback(request.status, request.responseText);
+      }
+    };
+
+    request.open('POST', url, true);
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send();
+  }
 }
 
 {
-  document.getElementById('ajaxButton')!.addEventListener('click', _ev => {
+  document.getElementById('getButton')!.addEventListener('click', _ev => {
     const ajax = new Ajax();
-    ajax.httpGet('http://localhost:4507/', (status, _response) => {
+    ajax.httpGet('tsconfig.json', (status, _response) => {
+      console.log(`status: ${status}`);
+      document.getElementById('content')!.innerHTML = _response;
+    });
+  });
+
+  document.getElementById('postButton')!.addEventListener('click', _ev => {
+    const ajax = new Ajax();
+    ajax.httpPost('http://localhost:4507/', 'postdata', (status, _response) => {
       console.log(`status: ${status}`);
     });
   });
