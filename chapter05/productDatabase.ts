@@ -27,4 +27,44 @@ export class ProductDatabase {
       products.forEach(product => productStore.add(product))
     };
   }
+
+  getProduct(productId: number, callback: (result: Product) => void) {
+    const openDatabaseRequest = indexedDB.open(this.name, this.version);
+
+    openDatabaseRequest.onsuccess = () => {
+      const db = openDatabaseRequest.result;
+      const productStore = db.transaction(['products']).objectStore('products');
+      const query = productStore.get(productId);
+      query.onsuccess = () => {
+        callback(query.result);
+      };
+    };
+  }
+
+  addProduct(product: Product) {
+    const openDatabaseRequest = indexedDB.open(this.name, this.version);
+
+    openDatabaseRequest.onsuccess = () => {
+      const db = openDatabaseRequest.result;
+
+      const productStore = 
+        db.transaction('products', 'readwrite').objectStore('products');
+
+      productStore.add(product);
+    };
+  }
+
+  deleteProduct(productId: number) {
+    const openDatabaseRequest = indexedDB.open(this.name, this.version);
+
+    openDatabaseRequest.onsuccess = () => {
+      const db = openDatabaseRequest.result;
+
+      const productStore =
+        db.transaction('products', 'readwrite').objectStore('products');
+
+      productStore.delete(productId);
+    };
+  }
+
 }

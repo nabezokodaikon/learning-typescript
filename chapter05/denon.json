@@ -2,7 +2,7 @@
   "$schema": "https://deno.land/x/denon/schema.json",
   "watch": true,
   "scripts": {
-    "start": "deno bundle -c tsconfig.json app.ts app.js"
+    "start": "deno bundle -c tsconfig.json db.ts db.js"
   },
   "watcher": {
     "exts": ["html", "json", "ts"]
