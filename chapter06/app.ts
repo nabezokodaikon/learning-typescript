@@ -3,8 +3,9 @@ import http from 'http';
 const portNumber = 8080;
 
 const requestListener = (
-  _req: http.IncomingMessage, res: http.ServerResponse) => {
+  req: http.IncomingMessage, res: http.ServerResponse) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.write(`Method: ${req.method}\nUrl: ${req.url}\n`);
   res.write('Response Text Here');
   res.end();
 };
