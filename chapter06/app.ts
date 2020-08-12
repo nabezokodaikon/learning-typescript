@@ -1,15 +1,15 @@
-import http from 'http';
+import express from 'express';
 
+const server = express();
 const portNumber = 8080;
 
-const requestListener = (
-  req: http.IncomingMessage, res: http.ServerResponse) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.write(`Method: ${req.method}\nUrl: ${req.url}\n`);
-  res.write('Response Text Here');
-  res.end();
+const requestListener = (req: express.Request,
+                         res: express.Response) => {
+  res.send(`You requested ${req.query.firstname} ${req.query.lastname}`);
 };
 
-http.createServer(requestListener).listen(portNumber);
+server.get('/', requestListener);
 
-console.log(`Listening on localhost: ${portNumber}`);
+server.listen(portNumber, () => {
+  console.log(`Listening on localhost: ${portNumber}`);
+});
