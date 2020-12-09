@@ -1,5 +1,5 @@
-function addNumbers(a, b) {
-  total = a + b;
+function addNumbers(a: number, b: number) {
+  const total = a + b;
   return total;
 }
 
