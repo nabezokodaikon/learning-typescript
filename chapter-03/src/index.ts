@@ -186,3 +186,69 @@
   // myArray.push(true)
   console.log(myArray)
 }
+
+{
+  let a: [number] = [1]
+  console.log(a)
+
+  let b: [string, string, number] = ['malcolm', 'gladwell', 1963]
+  // b = ['queen', 'elizabeth', 'iii', 1926]
+  console.log(b)
+
+  let trainFares: [number, number?][] = [
+    [3.75],
+    [8.25, 7.70],
+    [10.50]
+  ]
+  console.log(trainFares)
+
+  let friends: [string, ...string[]] = ['Sara', 'Tali', 'Chloe', 'Claire']
+  console.log(friends)
+
+  let list: [number, boolean, ...string[]] = [1, false, 'a', 'b', 'c']
+  console.log(list)
+}
+
+{
+  let as: readonly number[] = [1, 2, 3]
+  console.log(as)
+  let bs: readonly number[] = as.concat(4)
+  console.log(bs)
+  let three = bs[2]
+  console.log(three)
+  // as[4] = 5
+  // as.push(6)
+}
+
+{
+  function a(x: number) {
+    if (x < 10) {
+      return x
+    }
+    return null
+  }
+  console.log(a(11))
+
+  function b() {
+    return undefined
+  }
+  console.log(b())
+
+  function c() {
+    let a = 2 + 2
+    let b = a * a
+  }
+  console.log(c())
+
+  function d() {
+    throw TypeError('I always error')
+  }
+
+  function e() {
+    while (true) {
+    }
+  }
+  // console.log(e())
+
+  // let f: number = null
+}
