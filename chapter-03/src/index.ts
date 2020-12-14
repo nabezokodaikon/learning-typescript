@@ -140,3 +140,49 @@
   console.log(hoge('aaa', 1))
   console.log(hoge('', 1))
 }
+
+{
+  let a = [1, 2, 3]
+  console.log(a)
+  let b = ['a', 'b']
+  console.log(b)
+  let c: string[] = ['a']
+  console.log(c)
+  let d = [1, 'a']
+  console.log(d)
+  const e = [2, 'b']
+  console.log(e)
+
+  let f = ['red']
+  let f2 = [...f, 'blue']
+  console.log(f2)
+  // f.push(true)
+
+  let g = []
+  g.push(1)
+  g.push('red')
+  console.log(g)
+
+  let h: number[] = []
+  h.push(1)
+  // h.push('red')
+  console.log(h)
+
+  let d2 = d.map(_ => {
+    if (typeof _ === 'number') {
+      return _ * 3
+    }
+    return _.toUpperCase()
+  })
+  console.log(d2)
+
+  function buildArray() {
+    let a = []
+    a.push(1)
+    a.push('x')
+    return a
+  }
+  let myArray = buildArray()
+  // myArray.push(true)
+  console.log(myArray)
+}
