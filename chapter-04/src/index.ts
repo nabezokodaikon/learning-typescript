@@ -35,3 +35,13 @@
   }
   log3('Hello', { addId: 'abc', userId: 'def'})
 }
+
+{
+  const sum = (numbers: number[]): number =>
+    numbers.reduce((total, n) => total + n, 0)
+  console.log(sum([1, 2, 3]))
+
+  const sumVariadicSafe = (...numbers: number[]): number =>
+      numbers.reduce((total, n) => total + n, 0)
+  console.log(sumVariadicSafe(1, 2, 3))
+}
