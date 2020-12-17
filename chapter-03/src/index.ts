@@ -283,6 +283,9 @@
 }
 
 {
+  function printType(x: any) {
+    console.log(Object.prototype.toString.call(x))
+  }
   let a = 1042
   console.log(typeof(a))
   let b = 'apples and orenges'
@@ -290,15 +293,15 @@
   const c = 'pineapples'
   console.log(typeof(c))
   let d = [true, true, false]
-  console.log(typeof(d))
+  printType(d)
   let e = { type: 'ficus' }
-  console.log(typeof(e))
+  printType(e)
   let f = [1, false]
-  console.log(typeof(f))
+  printType(f)
   const g = [3]
-  console.log(typeof(g))
+  printType(g)
   const h = null
-  console.log(typeof(h))
+  printType(h)
 }
 
 
