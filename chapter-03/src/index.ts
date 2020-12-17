@@ -252,3 +252,53 @@
 
   // let f: number = null
 }
+
+{
+  const enum Language {
+    English = 0,
+    Spanish = 1,
+    Russian = 2,
+  }
+
+  let myFirstLanguage = Language.Russian
+  console.log(myFirstLanguage)
+  let mySecondLanguage = Language['English']
+  console.log(mySecondLanguage)
+
+  const enum Flippable {
+    Burger = 'Burger',
+    Chair = 'Chair',
+    Cup = 'Cup',
+    Skateboard = 'Skateboard',
+    Table = 'Table',
+  }
+
+  function flip(f: Flippable) {
+    return 'flipped it'
+  }
+
+  console.log(flip(Flippable.Chair))
+  console.log(flip(Flippable.Cup))
+  // console.log(flip(12))
+}
+
+{
+  let a = 1042
+  console.log(typeof(a))
+  let b = 'apples and orenges'
+  console.log(typeof(b))
+  const c = 'pineapples'
+  console.log(typeof(c))
+  let d = [true, true, false]
+  console.log(typeof(d))
+  let e = { type: 'ficus' }
+  console.log(typeof(e))
+  let f = [1, false]
+  console.log(typeof(f))
+  const g = [3]
+  console.log(typeof(g))
+  const h = null
+  console.log(typeof(h))
+}
+
+
