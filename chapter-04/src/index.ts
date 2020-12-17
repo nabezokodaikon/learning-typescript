@@ -54,3 +54,16 @@
   console.log(add.call(null, 10, 20))
   console.log(add.bind(null, 10, 20)())
 }
+
+{
+  const x = {
+    a() {
+      return this
+    }
+  }
+  x.a()
+
+  // const fancyDate = () =>
+    // `${this.getMonth()}`
+  // fancyDate.call(new Date)
+}
