@@ -140,3 +140,54 @@
   }
   times(n => console.log(n), 4)
 }
+
+{
+  type Log = (message: string, userId?: string) => void
+  let log: Log = (message, userId = 'Not signed in') => {
+    let time = new Date().toISOString()
+    console.log(time, message, userId)
+  }
+  log('hello', 'taro')
+
+  type Reservation = string
+  type Reserve = {
+    (from: Date, to: Date, destination: string): Reservation
+    (from: Date, destination: string): Reservation
+  }
+  let reserve: Reserve = (
+    from: Date,
+    toOrDestination: Date | string,
+    destination?: string
+  ) => {
+    if (toOrDestination instanceof Date && destination !== undefined) {
+      return from.toISOString()
+    } else if (typeof toOrDestination === 'string') {
+      return from.toISOString()
+    } else {
+      return from.toISOString()
+    }
+  }
+  console.log(reserve(new Date(), 'str'))
+
+  // type HTMLAnchorElement = string
+  // type HTMLCanvasElement = number
+  // type HTMLTableElement = boolean
+  // type HTMLElement = bigint
+  // type CreateElement = {
+    // (tag: 'a'): string
+    // (tag: 'canvas'): number
+    // (tag: 'table'): boolean
+    // (tag: string): bigint
+  // }
+  // let createAnchor: CreateElement = (tag: 'a' | 'canvas' | 'table' | string): HTMLAnchorElement | HTMLCanvasElement | HTMLTableElement| HTMLElement => {
+    // if (tag === 'a') {
+      // return 'tag' 
+    // } else if (tag === 'canvas') {
+      // return 1
+    // } else if (tag === 'table') {
+      // return true
+    // }
+    // return 1n
+  // }
+  // console.log(createAnchor('a'))
+}
