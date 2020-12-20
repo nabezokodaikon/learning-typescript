@@ -115,3 +115,16 @@
   const [one, two, ...rest] = numbers 
   console.log(rest)
 }
+
+{
+  const add = (a: number, b: number): number =>
+    a + b
+  console.log(add(1, 2)) 
+
+  type Log = (message: string, userId?: string) => void
+  let log: Log = (message, userId = 'Not signed in') => {
+    let time = new Date().toISOString()
+    console.log(time, message, userId)
+  }
+  log('hello')
+}
