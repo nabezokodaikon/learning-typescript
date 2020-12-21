@@ -191,3 +191,51 @@
   // }
   // console.log(createAnchor('a'))
 }
+
+{
+  type Filter = {
+    <T>(array: T[], f: (item: T) => boolean): T[]
+  }
+  const filter: Filter = (array, f) => {
+    const result = []
+    for (let i = 0; i < array.length; i++) {
+      const item = array[i]
+      if (f(item)) {
+        result.push(item)
+      }
+    }
+    return result
+  }
+  console.log(filter([1, 2, 3], _ => _ > 2))
+  console.log(filter(['a', 'b'], _ => _ !== 'b'))
+  let names = [
+    { firstName: 'beth' },
+    { firstName: 'caitlyn' },
+    { firstName: 'xin' },
+  ]
+  console.log(filter(names, _ => _.firstName.startsWith('b')))
+}
+
+{
+  type Filter = {
+    <T>(array: T[], f: (item: T) => boolean): T[]
+  }
+
+  type Filter2<T> = {
+    (array: T[], f: (item: T) => boolean): T[]
+  }
+}
+
+{
+  type Map = {
+    <T, U>(array: T[], f: (item: T) => U): U[]
+  }
+  const map: Map = (array, f) => {
+    let result = [] 
+    for (let i = 0; i < array.length; i++) {
+      result[i] = f(array[i]) 
+    }
+    return result
+  }
+  console.log(map([1, 2, 3], _ => _.toString()))
+}
