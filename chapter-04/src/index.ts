@@ -239,3 +239,12 @@
   }
   console.log(map([1, 2, 3], _ => _.toString()))
 }
+
+{
+  let promise = new Promise<number>(resolve =>
+    resolve(45)
+  )
+  promise.then(result =>
+    console.log(result * 4)
+  )
+}
