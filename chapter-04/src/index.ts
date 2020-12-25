@@ -250,30 +250,94 @@
 }
 
 {
-  type MyEvent<T> = {
-    target: T
-    type: string
+  // type MyEvent<T> = {
+    // target: T
+    // type: string
+  // }
+
+  // type ButtonEvent = MyEvent<HTMLButtonElement>
+
+  // let myEvent: MyEvent<HTMLButtonElement | null> = {
+    // target: document.querySelector('#myButton'),
+    // type: 'click'
+  // }
+
+  // type TimedEvent<T> = {
+    // event: MyEvent<T>
+    // from: Date
+    // to: Date
+  // }
+
+  // function triggerEvent<T>(event: MyEvent<T>): void {
+    // console.log('')
+  // }
+
+  // triggerEvent({
+    // target: document.querySelector('#myButton'),
+    // type: 'mouseover'
+  // })
+}
+
+{
+  type TreeNode = {
+    value: string
+  }
+  type LeafNode = TreeNode & {
+    isLeaf: true
+  }
+  type InnerNode = TreeNode & {
+    children: [TreeNode] | [TreeNode, TreeNode]
   }
 
-  type ButtonEvent = MyEvent<HTMLButtonElement>
+  let a: TreeNode = { value: 'a' }
+  let b: LeafNode = { value: 'b', isLeaf: true }
+  let c: InnerNode = { value: 'c', children: [b] }
 
-  let myEvent: MyEvent<HTMLButtonElement | null> = {
-    target: document.querySelector('#myButton'),
-    type: 'click'
+  let a1 = mapNode(a, _ => _.toUpperCase())
+  let b1 = mapNode(b, _ => _.toUpperCase())
+  let c1 = mapNode(c, _ => _.toUpperCase())
+
+  function mapNode<T extends TreeNode>(
+    node: T,
+    f: (value: string) => string
+  ): T {
+    return {
+      ...node,
+      value: f(node.value)
+    }
   }
 
-  type TimedEvent<T> = {
-    event: MyEvent<T>
-    from: Date
-    to: Date
+  type HasSides = { numberOfSides: number }
+  type SidesHaveLength = { sideLength: number }
+
+  function logPerimeter<
+    Shape extends HasSides & SidesHaveLength
+  >(s: Shape): Shape {
+    console.log(s.numberOfSides * s.sideLength)
+    return s
   }
 
-  function triggerEvent<T>(event: MyEvent<T>): void {
-    console.log('')
+  type Square = HasSides & SidesHaveLength
+  let square: Square = { numberOfSides: 4, sideLength: 3 }
+  logPerimeter(square)
+
+  // function call(
+    // f: (...args: unknown[]) => unknown,
+    // ...args: unknown[]
+  // ): unknown {
+    // return f(...args)
+  // }
+
+  function fill(length: number, value: string): string[] {
+    return Array.from({ length }, () => value)
   }
 
-  triggerEvent({
-    target: document.querySelector('#myButton'),
-    type: 'mouseover'
-  })
+  function call<T extends unknown[], R>(
+    f: (...args: T) => R,
+    ...args: T
+  ): R {
+    return f(...args)
+  }
+
+  console.log(call(fill, 10, 'a'))
 }
