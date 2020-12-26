@@ -341,3 +341,15 @@
 
   console.log(call(fill, 10, 'a'))
 }
+
+{
+  function is<T>(a: T, ...b: [T, ...T[]]): boolean {
+    return b.every(_ => _ === a)
+  }
+
+  console.log(is('string', 'otherstring'))
+  console.log(is(true, false))
+  console.log(is(42, 42))
+  console.log(is(1, 1, 1))
+  console.log(is(1, 2, 3))
+}
