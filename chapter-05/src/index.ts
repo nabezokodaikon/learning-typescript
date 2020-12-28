@@ -61,3 +61,26 @@ class Game {
   }
 }
 
+{
+  let set = new Set
+  set.add(1).add(2).add(3)
+  console.log(set.has(2))
+  console.log(set.has(4))
+}
+
+{
+  class Set {
+    has(value: number): boolean {
+      return true
+    }
+    add(value: number): this {
+      return this
+    }
+  }
+
+  class MutableSet extends Set {
+    delete(value: number): boolean {
+      return true
+    }
+  }
+}
