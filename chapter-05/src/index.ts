@@ -84,3 +84,61 @@ class Game {
     }
   }
 }
+
+{
+  interface Food {
+    calories: number
+    tasty: boolean
+  }
+  interface Shusi extends Food {
+    salty: boolean
+  }
+  interface Cake extends Food {
+    sweet: boolean
+  }
+}
+
+{
+  interface User {
+    name: string
+  }
+  interface User {
+    age: number
+  }
+  let a: User = {
+    name: 'Ashley',
+    age: 30
+  }
+  // interface User<Age extends number> {
+    // age: Age
+  // }
+}
+
+{
+  interface Animal {
+    readonly name: string
+    eat(food: string): void
+    sleep(hours: number): void
+  }
+
+  interface Feline {
+    meow(): void
+  }
+
+  class Cat implements Animal, Feline {
+    name = 'Cat'
+    eat(food: string) {
+      console.info('Ate some', food, '. Mmm!')
+    }
+    sleep(hours: number) {
+      console.info('Slept for', hours, 'hours')
+    }
+    meow() {
+      console.info('Meow')
+    }
+  }
+
+  let cat = new Cat
+  cat.eat('aaa')
+  cat.sleep(3)
+}
