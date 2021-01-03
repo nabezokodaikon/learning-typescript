@@ -230,3 +230,23 @@ class Game {
     // }
   // }
 }
+
+{
+  type Constructor<T> = new (...args: any[]) => T
+
+  function withEZDebug<TBase extends Constructor<{name: string}>>(Base: TBase) {
+    return class extends Base {
+      debug() {
+        console.log(this.name)
+      }
+    }
+  }
+
+  class User {
+    name = 'hoge'
+  }
+
+  const DebugUser = withEZDebug(User)
+  const debugUser = new DebugUser()
+  debugUser.debug()
+}
