@@ -40,3 +40,47 @@
   }
   // clone(crowToBird)
 }
+
+{
+  let e = [1, {x: 2}] as const;
+  // e[1].x = 2
+}
+
+{
+  type Options = {
+    baseURL: string
+    cacheSize?: number
+    tier?: 'prod' | 'dev'
+  }
+
+  class API {
+    constructor(private options: Options) {}
+  }
+
+  new API({
+    baseURL: 'https://api.mysite.com',
+    tier: 'prod'
+  });
+
+  // new API({
+    // baseURL: 'https://api.mysite.com',
+    // badTier: 'prod'
+  // });
+
+  new API({
+    baseURL: 'https://api.mysite.com',
+    badTier: 'prod'
+  } as Options);
+
+  const badOptions = {
+    baseURL: 'https://api.mysite.com',
+    badTier: 'prod'
+  }
+  new API(badOptions)
+
+  // const options: Options = {
+    // baseURL: 'https://api.mysite.com',
+    // badTier: 'prod'
+  // };
+  // new API(options)
+}
