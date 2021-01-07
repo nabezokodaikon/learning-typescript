@@ -158,6 +158,8 @@
   function isBig(n: number) {
     if (n >= 100) {
       return true
+    } else {
+      return false
     }
   }
 
@@ -165,4 +167,59 @@
     Mon: 'Tue'
   };
   nextDay.Mon;
+}
+
+{
+  type APIResponse = {
+    user: {
+      userId: string
+      friendList: {
+        count: number
+        friends: {
+          firstName: string
+          lastName: string
+        } []
+      }
+    }
+  }
+
+  type FriendList = APIResponse['user']['friendList'];
+  
+  function renderFriendList(friendList: FriendList) {}
+
+  function get<
+    O extends object,
+    K extends keyof O
+  >(
+    o: O,
+    k: K
+  ): O[K] {
+    return o[k]
+  }
+
+  type ActivetyLog = {
+    lastEvent: Date
+    events: {
+      id: string
+      timestamp: Date
+    }[]
+  }
+}
+
+{
+  type Unit = 'EUR' | 'GBP' | 'JPY' | 'USD';
+
+  type Currency = {
+    unit: Unit
+    value: number
+  };
+
+  let Currency = {
+    from(value: number, unit: Unit): Currency {
+      return {
+        unit: unit,
+        value
+      }
+    }
+  };
 }
