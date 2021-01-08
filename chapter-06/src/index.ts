@@ -223,3 +223,31 @@
     }
   };
 }
+
+{
+  function tuple<T extends unknown[]>(...ts: T): T {
+    return ts
+  }
+
+  let a = tuple(1, true, 'hello')
+  console.log(a)
+}
+
+{
+  function isString(a: unknown): a is string {
+    return typeof a === 'string';
+  }
+
+  console.log(isString('a'));
+  console.log(isString([7]));
+
+  function parseInput(input: string | number) {
+    let formattedInput: string;
+    if (isString(input)) {
+      formattedInput = input.toUpperCase();
+      console.log(formattedInput);
+    }
+  }
+
+  parseInput('hello');
+}
