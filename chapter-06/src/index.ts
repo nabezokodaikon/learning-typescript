@@ -251,3 +251,55 @@
 
   parseInput('hello');
 }
+
+{
+  type ToArray<T> = T[];
+  type A = ToArray<number>;
+  type B = ToArray<number | string>;
+}
+
+{
+  type ToArray2<T> = T extends unknown ? T[]: T[];
+  type A = ToArray2<number>;
+  type B = ToArray2<number | string>;
+}
+
+{
+  type Without<T, U> = T extends U ? never : T;
+  type A = Without<boolean | number | string, boolean>;
+}
+
+{
+  type ElementType<T> = T extends unknown[] ? T[number] : T;
+  type A = ElementType<number[]>;
+  type ElementType2<T> = T extends (infer U)[] ? U : T;
+  type B = ElementType2<number>;
+}
+
+{
+  type A = number | string;
+  type B = string;
+  type C = Exclude<A, B>
+}
+
+{
+  type A = number | string;
+  type B = string;
+  type C = Extract<A, B>
+}
+
+{
+  type A = { a?: number | null }
+  type B = NonNullable<A['a']>
+}
+
+{
+  type F = (a: number) => string;
+  type R = ReturnType<F>;
+}
+
+{
+  type A = { new(): B };
+  type B = { b: number };
+  type I = InstanceType<A>;
+}
