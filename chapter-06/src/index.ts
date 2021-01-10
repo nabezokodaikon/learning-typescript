@@ -303,3 +303,51 @@
   type B = { b: number };
   type I = InstanceType<A>;
 }
+
+{
+  type VisibleDialog = { id: string };
+  type DestroyedDialog = {};
+  type Dialog = VisibleDialog | DestroyedDialog;
+
+  function closeDialog(dialog: Dialog) {
+    if (!('id' in dialog)) {
+      return;
+    }
+    setTimeout(() =>
+      removeFromDOM(
+        dialog,
+        document.getElementById(dialog.id)!
+      )
+    );
+
+    function removeFromDOM(dialog: VisibleDialog, element: Element) {
+      element.parentNode!.removeChild(element);
+      // delete dialog.id
+    }
+  }
+}
+
+{
+  type CompanyID = string & { readonly brand: unique symbol };
+  type OrderID = string & { readonly brand: unique symbol };
+  type UserID = string & { readonly brand: unique symbol };
+  type ID = CompanyID | OrderID | UserID
+  function queryForUser(id: UserID) {
+  }
+
+  function CompanyID(id: string) {
+    return id as CompanyID;
+  }
+  function OrderID(id: string) {
+    return id as OrderID;
+  }
+  function UserID(id: string) {
+    return id as UserID;
+  }
+
+  let companyId = CompanyID('a');
+  let orderId = OrderID('b');
+  let userId = UserID('c');
+  queryForUser(userId);
+  // queryForUser(orderId);
+}
