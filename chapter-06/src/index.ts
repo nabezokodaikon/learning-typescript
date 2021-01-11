@@ -351,3 +351,127 @@
   queryForUser(userId);
   // queryForUser(orderId);
 }
+
+{
+  interface MyFoo {
+    method: () => void
+  }
+  class Foo {
+    method(): void {
+      console.log('Hello world');
+    }
+  }
+  const obj: MyFoo = new Foo();
+  const obj2: Foo = obj;
+  obj2.method();
+}
+
+{
+  const tuple: [string, number] = ['foo', 3];
+  tuple.pop();
+  tuple.push('Hey!');
+  const num: number = tuple[1];
+  console.log(num);
+}
+
+{
+  type Args = [string, ...number[]];
+  const func = (f: string, ...args: Args) => args[0]
+  const v1 = func('foo', 'bar');
+  const v2 = func('foo', 'bar', 1, 2, 3);
+}
+
+{
+  function bind<T, U extends any[], R>(func: (arg1: T, ...rest: U) => R, value: T): ((...args: U) => R) {
+    return (...args: U) => func(value, ...args);
+  }
+
+  const add = (x: number, y: number, z: number) => x + y + z;
+  const add1 = bind(add, 1);
+  console.log(add1(5, 6));
+}
+
+{
+  interface Hoge {
+    foo: string;
+    bar: number;
+  }
+  interface Piyo {
+    foo: number;
+    baz: boolean;
+  }
+  function useHogePiyo(obj: Hoge | Piyo): void {
+    if ('bar' in obj) {
+      console.log('Hoge', obj.bar);
+    } else {
+      console.log('Piyo', obj.baz);
+    }
+  }
+  useHogePiyo({foo: 'a', bar: 0});
+}
+
+{
+  interface Some<T> {
+    type: 'Some';
+    value: T;
+  }
+  interface None {
+    type: 'None'
+  }
+  type Option<T> = Some<T> | None;
+
+  function map<T, U>(obj: Option<T>, f: (obj: T) => U): Option<U> {
+    switch (obj.type) {
+      case 'Some':
+        return {
+          type: 'Some',
+          value: f(obj.value)
+        };
+      case 'None':
+        return {
+          type: 'None'
+        };
+      default:
+        return obj
+    }
+  }
+  const s: Some<number> = {type: 'Some', value: 1};
+  const r = map(s, (a) => a * 2);
+  console.log(r);
+}
+
+{
+  interface MyObj {
+    [key: string]: number;
+  }
+  const obj: MyObj = {};
+  console.log(obj.foo)
+}
+
+{
+  interface Func {
+    foo: string;
+    a(arg: number): void;
+    b(arg: string): void;
+    // (arg: string): string;
+  }
+  const f: Func = {
+    foo: 'a',
+    a(arg: number): void {console.log(arg)},
+    b(arg: string): void {console.log(arg)}
+  };
+  // f(1)
+}
+
+{
+  interface Ctor<T> {
+    new(): T
+  }
+  class Foo {
+    public bar: number | undefined;
+  }
+  const f: Ctor<Foo> = Foo;
+  const g = new f();
+  g.bar = 1;
+  console.log(g.bar);
+}
