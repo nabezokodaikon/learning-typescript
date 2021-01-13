@@ -475,3 +475,66 @@
   g.bar = 1;
   console.log(g.bar);
 }
+
+{
+  const obj = {
+    foo: '123',
+    bar: [1, 2, 3]
+  };
+
+  obj.foo = '';
+
+  const obj2 = {
+    foo: '123',
+    bar: [1, 2, 3],
+  } as const;
+  // obj2.foo = '';
+  // obj2.bar[1] = 3
+}
+
+{
+  interface Length {
+    length: number;
+  }
+  const o: Length = 'foo';
+  console.log(o);
+
+  const obj = { foo: 'foo' };
+  const obj2: {} = obj;
+  obj.foo;
+}
+
+{
+  interface Options {
+    foo?: string;
+    bar?: number;
+  }
+  const obj1 = { foo: 'hello' };
+  const obj2: Options = obj1;
+  // const obj3: Options = 5;
+}
+
+{
+  const u: unknown = 3;
+  class MyClass {
+    public prop: number = 10;
+  }
+  if (u instanceof MyClass) {
+    u.prop
+  }
+}
+
+{
+  function pick<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+  }
+
+  const obj = {
+    foo: 'Hello',
+    bar: 123,
+  };
+
+  const str: string = pick(obj, 'foo');
+  const num: number = pick(obj, 'bar');
+  // pick(obj, 'baz')
+}
