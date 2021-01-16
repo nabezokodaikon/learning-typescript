@@ -62,3 +62,35 @@
     }
   }
 }
+
+{
+  class InvalidDateFormatError extends RangeError {}
+  class DateIsInTheFutureError extends RangeError {}
+
+  function isValid(date: Date) {
+    return Object.prototype.toString.call(date) === '[object Date]'
+      && !Number.isNaN(date.getTime());
+  }
+
+  function parse(
+    birthday: string
+  ): Date | InvalidDateFormatError | DateIsInTheFutureError {
+    const date = new Date(birthday)
+    if (!isValid(date)) {
+      return new InvalidDateFormatError('Enter a date in the from YYYY/MM/DD');
+    }
+    if (date.getTime() > Date.now()) {
+      return new DateIsInTheFutureError('Are you a time lord?');
+    }
+    return date;
+  }
+
+  const result = parse('a2021/01/18');
+  if (result instanceof InvalidDateFormatError) {
+    console.error(result.message);
+  } else if (result instanceof DateIsInTheFutureError) {
+    console.error(result.message);
+  } else {
+    console.info('Date is', result.toISOString());
+  }
+}
