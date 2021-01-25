@@ -1,4 +1,4 @@
 onmessage = e => {
   console.log(e.data);
-  postMessage(`Ack: "${e.data}"`);
+  postMessage(`Ack: "${e.data}"`, [] as any);
 }
