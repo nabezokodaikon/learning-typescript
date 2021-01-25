@@ -11,7 +11,7 @@
     "typescript": "^4.2.0-dev.20201226"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "node src/Server.js",
     "eslint": "eslint ./src --ext .js,.jsx,.ts,.tsx --fix"
   },
   "devDependencies": {
