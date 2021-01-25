@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "node src/Server.js",
+    "build": "npx tsc src/*.ts",
     "eslint": "eslint ./src --ext .js,.jsx,.ts,.tsx --fix"
   },
   "devDependencies": {
