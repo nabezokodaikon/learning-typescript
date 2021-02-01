@@ -1,7 +1,9 @@
-const worker = new Worker('WorkerScript.js');
+import {fork} from 'child_process';
 
-worker.onmessage = e => {
-  console.log(e.data);
-};
+let child = fork('./src/ChildThread.js');
 
-worker.postMessage('some data');
+child.on('messages', data => 
+  console.log('Child process sent a messages', data)
+);
+
+child.send({type: 'syn', data: [3]});
