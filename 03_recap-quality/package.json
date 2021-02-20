@@ -1,0 +1,13 @@
+{
+  "name": "03_recap-quality",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^9.1.1"
+  },
+  "dependencies": {
+    "@types/big.js": "^6.0.2",
+    "big.js": "^6.0.3"
+  }
+}
