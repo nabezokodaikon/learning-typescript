@@ -118,5 +118,144 @@
   console.log(exAdder.add(2));
 }
 
-{
-}
+// import fs = require('fs');
+// function loadJSON(filename: string, cb: (error: Error | null, data: any) => void) {
+  // fs.readFile(filename, function(err, data) {
+    // if (err) cb(err, null);
+    // else cb(null, JSON.parse(data.toString()))
+  // });
+// }
+
+// {
+  // const promise = new Promise((resolve, reject) => {
+    // resolve(123);
+    // // reject(new Error('Error'));
+  // });
+  // promise.then(res => {
+    // console.log('I get called:', res === 123);
+  // });
+  // promise.catch(err => {
+    // console.log('I get called:', err.message);
+  // });
+// }
+
+// {
+  // Promise.resolve(new Error('何か悪いことが起きた'))
+    // .then((res) => {
+      // console.log(res);
+      // return 456;
+    // })
+    // .then((res) => {
+      // console.log(res);
+      // return Promise.resolve(123);
+    // })
+    // .then((res) => {
+      // console.log(res);
+      // return 123;
+    // })
+    // .catch(err => {
+      // console.log(err.message);
+      // return 123;
+    // })
+    // .then((res) => {
+      // console.log(res);
+    // })
+// }
+
+// {
+  // Promise.resolve(123)
+    // .then((res) => {
+      // throw new Error('何か悪いことが起きた');
+      // return 456;
+    // })
+    // .then((res) => {
+      // console.log(res);
+      // return Promise.resolve(123);
+    // })
+    // .catch(err => {
+      // console.log(err.message);
+    // })
+// }
+
+// console.log('--------');
+
+// {
+  // Promise.resolve(123)
+    // .then((res) => {
+      // throw new Error('何か悪いことが起きた');
+    // })
+    // .catch((err) => {
+      // console.log(`first catch: ${err}`);
+      // return 123
+    // })
+    // .then((res) => {
+      // console.log(res);
+      // return Promise.resolve(789);
+    // })
+    // .catch((err) => {
+      // console.log(`second catch: ${err}`);
+    // })
+// }
+
+console.log('--------');
+
+// {
+  // const iReturnPromiseAfter1Second = () => {
+    // return new Promise((resolve) => {
+      // setTimeout(() => resolve("Hello woorld!"), 1000);
+    // });
+  // } 
+
+  // Promise.resolve(123)
+    // .then((_) => {
+      // return iReturnPromiseAfter1Second();
+    // })
+    // .then((res) => {
+      // console.log(res);
+    // })
+// }
+
+// import fs = require('fs');
+// const readFileAsync = (filename: string) => {
+  // return new Promise((resolve, reject) => {
+    // fs.readFile(filename, (err, result) => {
+      // if (err) reject(err);
+      // else resolve(result);
+    // });
+  // });
+// };
+
+// const loadJSONAsync = (filename: string) => {
+  // return readFileAsync(filename)
+            // .then((res) => {
+              // return JSON.parse(res);
+            // });
+// };
+
+// const loadItem = (id: number) => {
+  // return new Promise((resolve) => {
+    // console.log('loading item', id);
+    // setTimeout(() => {
+      // resolve({ id: id });
+    // }, 1000);
+  // })
+// };
+
+// let item1, item2;
+// loadItem(1)
+  // .then((res) => {
+    // item1 = res;
+    // return loadItem(2);
+  // })
+  // .then((res) => {
+    // item2 = res;
+    // console.log('done');
+  // })
+
+// Promise.all([loadItem(3), loadItem(4)])
+  // .then((res) => {
+    // [item1, item2] = res;
+    // console.log('done');
+  // });
+
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
