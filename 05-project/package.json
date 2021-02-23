@@ -1,0 +1,9 @@
+{
+  "name": "05-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^9.1.1"
+  }
+}
