@@ -258,4 +258,25 @@ console.log('--------');
     // console.log('done');
   // });
 
-const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+// const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
+{
+  function delay(milliseconds: number, count: number): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
+      setTimeout(() => {
+        resolve(count)
+      }, milliseconds);
+    });
+  }
+
+  async function dramaticWelcome(): Promise<void> {
+    console.log('Hello');
+
+    for (let i = 0; i < 5; i++) {
+      const count: number = await delay(500, i)
+      console.log(count);
+    }
+  }
+
+  dramaticWelcome();
+}
