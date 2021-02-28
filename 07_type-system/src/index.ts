@@ -100,3 +100,93 @@
   sample = '123';
   console.log(sample);
 }
+
+{
+  interface Point {
+    x: number;
+    y: number;
+  }
+
+  class MyPoint implements Point {
+    x: number = 1;
+    y: number = 2;
+  }
+
+  const foo: Point = new MyPoint();
+  console.log(foo);
+}
+
+{
+  enum CardSuit {
+    Clubs,
+    Diamonds,
+    Hearts,
+    Spades
+  }
+
+  const card = CardSuit.Clubs;
+  console.log(card); 
+}
+
+{
+  enum AnimalFlags {
+    None = 0,
+    HasClaws = 1 << 0,
+    CanFly = 1 << 1,
+  }
+
+  type Animal = {
+    flags: AnimalFlags
+  }
+
+  function printAnimalAbilities(animal: Animal) {
+    const animalFlags = animal.flags;
+    if (animalFlags & AnimalFlags.HasClaws) {
+      console.log('animal has claws');
+    }
+    if (animalFlags & AnimalFlags.CanFly) {
+      console.log('animal can flay');
+    }
+    if (animalFlags == AnimalFlags.None) {
+      console.log('nothing');
+    }
+  }
+
+  const animal: Animal = { flags: AnimalFlags.None };
+  printAnimalAbilities(animal);
+  animal.flags |= AnimalFlags.HasClaws;
+  printAnimalAbilities(animal);
+  animal.flags &= ~AnimalFlags.HasClaws;
+  printAnimalAbilities(animal);
+  animal.flags |= AnimalFlags.HasClaws | AnimalFlags.CanFly;
+  printAnimalAbilities(animal);
+}
+
+enum Weekday {
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday,
+}
+
+namespace Weekday {
+  export function isBusinessDay(day: Weekday) {
+    switch (day) {
+      case Weekday.Saturday:
+      case Weekday.Sunday:
+        return false;
+      default:
+        return true;
+    }
+  }
+}
+
+{
+  const mon = Weekday.Monday;
+  const sun = Weekday.Sunday;
+  console.log(Weekday.isBusinessDay(mon));
+  console.log(Weekday.isBusinessDay(sun));
+}
