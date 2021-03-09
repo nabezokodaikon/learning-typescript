@@ -190,3 +190,37 @@ namespace Weekday {
   console.log(Weekday.isBusinessDay(mon));
   console.log(Weekday.isBusinessDay(sun));
 }
+
+{
+  let sampleVariable: { bar: number };
+
+  function foo(sampleVariable: { bar: number }) {}
+}
+
+{
+  interface Foo {
+    foo: string;
+  }
+
+  function foo(sample: Foo): Foo {
+    return sample;
+  }
+}
+
+{
+  function foo(bar: number): void;
+  function foo(bar: number, bas: string): void;
+  function foo(bar: number, bas: string = 'hello'): void {
+    console.log(bar, bas);
+  }
+  foo(123);
+  foo(123, 'world');
+}
+
+{
+  type LongHand = {
+    (a: number): number;
+  }
+
+  type ShortHand = (a: number) => number;
+}
