@@ -224,3 +224,39 @@ namespace Weekday {
 
   type ShortHand = (a: number) => number;
 }
+
+{
+  interface Overloaded {
+    (foo: string): string
+    (foo: number): number
+  }
+
+  function stringOrNumber(foo: number): number;
+  function stringOrNumber(foo: string): string;
+  function stringOrNumber(foo: any): any {
+    if (typeof foo === 'number') {
+      return foo * foo;
+    } else if (typeof foo === 'string') {
+      return `hello ${foo}`;
+    }
+  }
+
+  const overloaded: Overloaded = stringOrNumber;
+
+  const str = overloaded('world');
+  const num = overloaded(123);
+
+  console.log(str);
+  console.log(num);
+}
+
+{
+  function logName(something: { name: string }) {
+    console.log(something.name);
+  }
+
+  logName({ name: 'matt' });
+  // logName({ name: 'matt', job: 'being awesome' });
+  const foo = { name: 'matt', job: 'being awesome' };
+  logName(foo);
+}
