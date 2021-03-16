@@ -260,3 +260,55 @@ namespace Weekday {
   const foo = { name: 'matt', job: 'being awesome' };
   logName(foo);
 }
+
+{
+  class Queue<T> {
+    private data = new Array<T>();
+    push(item: T) { this.data.push(item); }
+    pop(): T | undefined { return this.data.shift(); }
+  }
+
+  class Utility {
+    reverse<T>(items: T[]): T[] {
+      const toreturn = [];
+      for (let i = items.length - 1; i >= 0; i--) {
+        toreturn.push(items[i]);
+      }
+      return toreturn;
+    }
+  }
+
+  const sample = [1, 2, 3];
+  const util = new Utility();
+  const reversed = util.reverse(sample);
+  console.log(reversed);
+}
+
+import fetch from 'isomorphic-unfetch';
+
+{
+  const getJSON = <T>(config: { url: string, headers?: { [key: string]: string }, }): Promise<T> => {
+    const fetchConfig = ({
+      method: 'GET',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      ...(config.headers || {})
+    });
+    return fetch(config.url, fetchConfig)
+      .then<T>(response => response.json());
+  }
+
+  type LoadUsersResponse = {
+    users: {
+      name: string;
+      email: string;
+    }[];
+  }
+
+  function loadUsers() {
+    return getJSON<LoadUsersResponse>({ url: 'https://example.com/users' });
+  }
+
+  // const result = loadUsers();
+  // console.log(result);
+}
