@@ -328,3 +328,9 @@ import fetch from 'isomorphic-unfetch';
     throw new Error(message);
   }
 }
+
+{
+  type Index = 'a' | 'b' | 'c';
+  type FromIndex = { [k in Index]?: number };
+  const good: FromIndex = { b: 1, c: 2, a: 3 };
+}
