@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+type Props = {
+  header: React.ReactNode;
+  body: React.ReactNode;
+}
+
+// const MyComponent: React.FC<Props> = (props) => {
+    // return <span>{props.foo}</span>
+// }
+
+/** ジェネリックコンポーネント */
+type SelectProps<T> = { items: T[] }
+class Select<T> extends React.Component<SelectProps<T>, any> { 
+  render() {
+    return (
+      <>{this.props.items}</>
+    );
+  }
+}
+
+/** 使い方 */
+const Form: React.FC<SelectProps<string>> = () => {
+  return <Select<string> items={['a','b', 'c']} />;
+}
+
+class MyComponent extends React.Component<Props, {}> {
+  render() {
+    return (
+      <>
+        {this.props.header}
+        {this.props.body}
+        <Form items={[]} /> 
+      </>
+    );
+  }
+}
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <MyComponent header="これはヘッダーです" body="bbb" />;
 }
 
 export default App;
