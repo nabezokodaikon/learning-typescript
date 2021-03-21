@@ -334,3 +334,22 @@ import fetch from 'isomorphic-unfetch';
   type FromIndex = { [k in Index]?: number };
   const good: FromIndex = { b: 1, c: 2, a: 3 };
 }
+
+{
+  type SomethingComplex = {
+    foo: number;
+    bar: string;
+  }
+  function takeSomethingComplex(arg: SomethingComplex) {
+  }
+  function getBar(): string {
+    return 'some bar'
+  }
+
+  const fail = {
+    foo: 123,
+    bar: getBar(),
+  };
+
+  takeSomethingComplex(fail)
+}
