@@ -1,7 +1,7 @@
 {
-  let a: number = 1;
-  let b: string = 'hello';
-  let c: boolean[] = [];
+  const a = 1;
+  const b = 'hello';
+  const c: boolean[] = [];
   c.push(true);
   c.push(false);
   console.log(a);
@@ -24,11 +24,11 @@
   console.log(typeof a === 'number');
   const b = a + 3;
   console.log(typeof b === 'number');
-  let c = {
+  const c = {
     apple: a,
     banana: b,
   };
   console.log(typeof c === 'object');
-  let d = c.apple + 4;
+  const d = c.apple + 4;
   console.log(typeof d === 'number');
 }
