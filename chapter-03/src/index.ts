@@ -41,3 +41,51 @@
   a = { b: 1, 10: true, 20: false };
   console.log(a[10]);
 }
+
+{
+  type Age = number;
+  type Person = {
+    name: string;
+    age: Age;
+  };
+
+  const age: Age = 55;
+  const driver: Person = {
+    name: 'James May',
+    age: age,
+  };
+
+  type Color = 'red';
+}
+
+{
+  type Cat = { name: string; purrs: boolean };
+  type Dog = { name: string; barks: boolean; wags: boolean };
+  type CatOrDogOrBoth = Cat | Dog;
+  type CatAndDog = Cat & Dog;
+
+  const a: CatOrDogOrBoth = {
+    name: 'Bonkers',
+    purrs: true,
+  };
+
+  const b: CatOrDogOrBoth = {
+    name: 'Domino',
+    barks: true,
+    wags: true,
+  };
+
+  const c: CatOrDogOrBoth = {
+    name: 'Donkers',
+    barks: true,
+    purrs: true,
+    wags: true,
+  };
+
+  const d: CatAndDog = {
+    name: 'Domino',
+    barks: true,
+    purrs: true,
+    wags: true,
+  };
+}
